@@ -60,10 +60,9 @@ func (n *BigNumber) Add(b *BigNumber) *BigNumber {
 }
 
 func (n *BigNumber) ModPow(exp, m *BigNumber) *BigNumber {
-	base := new(big.Int).Abs(n.v)
 	e := new(big.Int).Abs(exp.v)
 	mm := new(big.Int).Abs(m.v)
-	return &BigNumber{v: new(big.Int).Exp(base, e, mm)}
+	return &BigNumber{v: new(big.Int).Exp(n.v, e, mm)}
 }
 
 func (n *BigNumber) AsByteArray(reqSize int, reverse bool) []byte {
