@@ -1,0 +1,16 @@
+services:
+  wowchat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: re3os/wowchat:latest
+    container_name: wowchat
+    restart: unless-stopped
+    # The bot reads its config from .env in the working directory.
+    # Mount your local .env (gitignored) into the container.
+    volumes:
+      - ./.env:/app/.env:ro
+      - ./logs:/app/logs
+    # Uncomment to override via env vars instead of a mounted file:
+    # env_file:
+    #   - .env
